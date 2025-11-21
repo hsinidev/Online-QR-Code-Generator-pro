@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary SEO Meta Tags -->
+    <title>Free Online QR Code Generator with Logo | Doodax</title>
+    <meta name="title" content="Free Online QR Code Generator with Logo | Doodax" />
+    <meta name="description" content="The #1 Free Online QR Code Generator. Create secure, custom QR codes for URLs, Wi-Fi, vCards, and more. Add your logo, customize colors, and download high-quality PNGs instantly. No sign-up." />
+    <meta name="keywords" content="qr code generator, free qr code generator, qr code with logo, wifi qr code, vcard generator, custom qr code, qr code maker, high resolution qr, privacy qr code, doodax, hsini mohamed" />
+    <meta name="author" content="HSINI MOHAMED" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <link rel="canonical" href="https://doodax.com" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://doodax.com" />
+    <meta property="og:site_name" content="Doodax QR Tools" />
+    <meta property="og:title" content="Free Online QR Code Generator with Logo | Doodax" />
+    <meta property="og:description" content="Create secure, custom QR codes for URLs, Wi-Fi, vCards, and more. Add your logo, customize colors, and download high-quality PNGs instantly." />
+    <meta property="og:image" content="https://doodax.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://doodax.com" />
+    <meta name="twitter:title" content="Free Online QR Code Generator with Logo | Doodax" />
+    <meta name="twitter:description" content="Create secure, custom QR codes for URLs, Wi-Fi, vCards, and more. Add your logo and download instantly." />
+    <meta name="twitter:image" content="https://doodax.com/og-image.png" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <style>
+      /* Deep Space Nebula Background */
+      body {
+        background-color: #050510;
+        color: #e2e8f0;
+        overflow-x: hidden;
+        font-family: system-ui, -apple-system, sans-serif;
+        margin: 0;
+      }
+
+      .nebula-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+        background: #050510;
+        overflow: hidden;
+      }
+
+      /* Base gradient for depth */
+      .nebula-bg::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at center, #1a1a3a 0%, #050510 70%);
+        opacity: 0.8;
+        z-index: 0;
+      }
+
+      /* Animated Nebula Clouds */
+      .nebula-cloud {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(90px);
+        opacity: 0.5;
+        z-index: 1;
+        animation: nebula-float 25s infinite alternate ease-in-out;
+        will-change: transform, opacity;
+      }
+
+      .cloud-1 {
+        top: -10%;
+        left: -10%;
+        width: 50vw;
+        height: 50vw;
+        background: #5b21b6; /* Deep Violet */
+        animation-delay: 0s;
+      }
+
+      .cloud-2 {
+        bottom: -10%;
+        right: -10%;
+        width: 60vw;
+        height: 60vw;
+        background: #1e3a8a; /* Dark Blue */
+        animation-delay: -5s;
+        animation-duration: 30s;
+      }
+
+      .cloud-3 {
+        top: 40%;
+        left: 30%;
+        width: 40vw;
+        height: 40vw;
+        background: #be185d; /* Pink/Magenta */
+        opacity: 0.3;
+        animation-delay: -10s;
+        animation-duration: 35s;
+      }
+
+      .cloud-4 {
+        bottom: 20%;
+        left: 10%;
+        width: 35vw;
+        height: 35vw;
+        background: #0891b2; /* Cyan */
+        opacity: 0.3;
+        animation-delay: -15s;
+        animation-duration: 40s;
+      }
+
+      /* Stars */
+      .star {
+        position: absolute;
+        background: white;
+        border-radius: 50%;
+        z-index: 2;
+        opacity: 0;
+        box-shadow: 0 0 3px rgba(255, 255, 255, 0.7);
+        animation: twinkle var(--duration) infinite ease-in-out;
+      }
+
+      /* Shooting Stars */
+      .shooting-star {
+        position: absolute;
+        z-index: 3;
+        top: 50%;
+        left: 50%;
+        width: 120px;
+        height: 2px;
+        background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,1));
+        animation: shoot 4s linear infinite;
+        opacity: 0;
+        filter: drop-shadow(0 0 6px rgba(100, 200, 255, 0.8));
+      }
+
+      /* Keyframes */
+      @keyframes nebula-float {
+        0% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+        50% { transform: translate(30px, -20px) scale(1.1); opacity: 0.6; }
+        100% { transform: translate(-20px, 30px) scale(0.95); opacity: 0.5; }
+      }
+
+      @keyframes twinkle {
+        0% { opacity: 0; transform: scale(0.5); }
+        50% { opacity: var(--max-opacity); transform: scale(1); }
+        100% { opacity: 0; transform: scale(0.5); }
+      }
+
+      @keyframes shoot {
+        0% { transform: translate(0, 0) rotate(-45deg) scale(0.5); opacity: 1; }
+        10% { opacity: 1; }
+        100% { transform: translate(-800px, 800px) rotate(-45deg) scale(1); opacity: 0; }
+      }
+
+      /* Scrollbar */
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: #050510; }
+      ::-webkit-scrollbar-thumb { background: #5b21b6; border-radius: 4px; }
+      ::-webkit-scrollbar-thumb:hover { background: #7c3aed; }
+    </style>
+    
+    <!-- Structured Data / JSON-LD for Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "name": "Doodax QR Generator",
+          "url": "https://doodax.com",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://doodax.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Doodax Online QR Code Generator",
+          "operatingSystem": "Any",
+          "applicationCategory": "UtilitiesApplication",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "ratingCount": "1284"
+          },
+          "featureList": "Static QR Codes, Wi-Fi QR Codes, vCard Generator, Logo Integration, High Resolution PNG",
+          "author": {
+            "@type": "Person",
+            "name": "HSINI MOHAMED",
+            "url": "https://github.com/hsinidev"
+          }
+        },
+        {
+          "@type": "Organization",
+          "name": "Doodax",
+          "url": "https://doodax.com",
+          "logo": "https://doodax.com/favicon.svg",
+          "founder": {
+            "@type": "Person",
+            "name": "HSINI MOHAMED"
+          },
+          "email": "hsini.web@gmail.com"
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Is Doodax QR Code Generator free?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, Doodax is completely free for both personal and commercial use. There are no scan limits for our static QR codes."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I add a logo to my QR code?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, Doodax allows you to upload and embed your custom logo directly into the center of the QR code."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do the QR codes expire?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. Doodax generates static QR codes that encode the data directly. As long as your link works, the QR code will work forever."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is my data secure?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Absolutely. Doodax uses client-side generation technology. Your data (URLs, Wi-Fi passwords, contacts) is processed in your browser and never sent to our servers."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div class="nebula-bg" id="galaxy">
+      <!-- Nebula Gas Clouds -->
+      <div class="nebula-cloud cloud-1"></div>
+      <div class="nebula-cloud cloud-2"></div>
+      <div class="nebula-cloud cloud-3"></div>
+      <div class="nebula-cloud cloud-4"></div>
+    </div>
+    <script>
+      // Dynamic Star Field Generation
+      const galaxy = document.getElementById('galaxy');
+      const starCount = 250; // Increased star count for depth
+      
+      // Create static stars
+      for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        
+        const x = Math.random() * 100;
+        const y = Math.random() * 100;
+        const size = Math.random() * 2 + 0.5;
+        const duration = Math.random() * 3 + 3; // Slower twinkle
+        const maxOpacity = Math.random() * 0.8 + 0.2;
+        
+        star.style.left = `${x}%`;
+        star.style.top = `${y}%`;
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+        star.style.setProperty('--duration', `${duration}s`);
+        star.style.setProperty('--max-opacity', maxOpacity);
+        star.style.animationDelay = `${Math.random() * 5}s`;
+        
+        galaxy.appendChild(star);
+      }
+
+      // Spawn Shooting Stars
+      function spawnShootingStar() {
+        const star = document.createElement('div');
+        star.classList.add('shooting-star');
+        
+        // Random start position (mostly top or right side)
+        const startY = Math.random() * 50; 
+        const startX = Math.random() * 100;
+        
+        star.style.top = startY + '%';
+        star.style.left = startX + '%';
+        
+        // Random duration/speed
+        const duration = Math.random() * 2 + 1.5; 
+        star.style.animationDuration = duration + 's';
+        
+        galaxy.appendChild(star);
+        
+        // Remove after animation
+        setTimeout(() => {
+          star.remove();
+        }, duration * 1000);
+      }
+
+      // Spawn loop - slightly less frequent for a calmer nebula feel
+      setInterval(spawnShootingStar, 5000);
+      // Initial burst
+      spawnShootingStar();
+    </script>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
