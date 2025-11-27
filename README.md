@@ -11,7 +11,7 @@ The application features a stunning, immersive "Nebula Galaxy" theme, a fully ce
 
 ## 🚀 LIVE DEMO
 **Experience the application live:**  
-👉 **[QRCodes.doodax.com](https://doodax.com)**
+👉 **[doodax.com](https://doodax.com/tools/qr-code-generator/index.html)**
 
 ---
 
